@@ -6,13 +6,17 @@ This is just a small private project developed in lack of a proper solution to m
 ## How do I use it?
 The magic happens in credch.py. It's really just a small python script that reads the config file (`gitCredentials.json`) and interacts with the user.
 To test it just rename the demo config file `gitCredentialsDemo.json` to `gitCredentials.json` and run the script.
-`python credch.py`
+```sh
+python credch.py
+```
 
 ### 'Installation'
 To use the script in your existing repository rather than in this cloned one, some further steps are required:
 
 The easiest way is to create an alias, so that the script can be called from any other directory:
-`alias gitCred='python /<Path>/<to>/<this>/<repository>/credch.py'`
+```sh
+alias gitCred='python /<Path>/<to>/<this>/<repository>/credch.py'
+```
 
 To make this alias 'permanent' add the previous command to your `~/.bashrc`.
 
@@ -23,4 +27,6 @@ To create one, copy the demo file  `gitCredentialsDemo.json` to the toplevel dir
 Then run `credch.py` again.
 
 ## Usage
-`credch.py -h`
+```sh
+credch.py -h
+```

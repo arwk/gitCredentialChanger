@@ -3,6 +3,12 @@
 ## Why does this project exist?
 This is just a small private project developed in lack of a proper solution to manage multiple developers using the same computer/server working in the same git repository.
 
+## Possible use cases:
+* Pair Programming on one machine with changing teams and combinations
+* Multiple admins editing and commiting files on a server
+* Using multiple mail adresses for diffrent purposes (e.g. private use, publishing on github, etc.)
+* Committing as someone else (e.g. when collaborating with somone without enough git knowledge)
+
 ## How do I use it?
 The magic happens in credch.py. It's really just a small python script that reads the config file (`gitCredentials.json`) and interacts with the user.
 To test it just rename the demo config file `gitCredentialsDemo.json` to `gitCredentials.json` and run the script.

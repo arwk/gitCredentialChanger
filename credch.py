@@ -18,6 +18,7 @@ import re
 #################
 scriptPath = os.path.dirname(os.path.realpath(__file__))
 configFilename = "gitCredentials.json"
+configFilenameDemo = "gitCredentialsDemo.json"
 
 ##################
 # Setup argparse #
@@ -169,7 +170,7 @@ if args.show:
 if not checkConfigFile(path):
     # Exit if no configfile is present
     configFilePath = "{}/{}".format(path, configFilename)
-    demopath = "{}/{}".format(scriptPath, configFilename)
+    demopath = "{}/{}".format(scriptPath, configFilenameDemo)
     print "There seems to be no config file '{cpath}' :(\nTo create one, you might want to copy the demo file.\n  cp {demopath} {cpath}\nExiting...".format(demopath=demopath, cpath=configFilePath)
     sys.exit()
 
@@ -200,15 +201,20 @@ shortMatches = []
 #  ]
 
 with open('{}/{}'.format(path, configFilename)) as data_file:
-    persons = json.load(data_file)
-    # Iterate over all entries
-    for idx, person in enumerate(persons):
-        realName = person['name']
-        short = person['abbr']
-        idxList.append(person)
-        # Try to find matching abbreviations
-        if shortArgv != "" and shortArgv in short:
-            shortMatches.append(person)
+    try:
+        persons = json.load(data_file)
+        # Iterate over all entries
+        for idx, person in enumerate(persons):
+            realName = person['name']
+            short = person['abbr']
+            idxList.append(person)
+            # Try to find matching abbreviations
+            if shortArgv != "" and shortArgv in short:
+                shortMatches.append(person)
+    except ValueError, e:
+        print "ERROR: Your Configfile ({}/{}) couldn't be parsed...\nGoodbye!".format(path, configFilename)
+        print e
+        sys.exit()
 
 if len(shortMatches) == 0:
     print "Nothing matched. Please choose"
